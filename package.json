@@ -1,13 +1,13 @@
 {
-  "name": "react-ladda",
-  "version": "6.0.0",
+  "name": "@zumper/react-ladda",
+  "version": "6.0.0-zumper.0",
   "description": "React wrapper for Ladda buttons",
   "main": "dist/index.js",
   "scripts": {
-    "watch": "./node_modules/.bin/mocha -w --watch-extensions=jsx test/.setup.js test/**/*-test.jsx",
-    "test": "./node_modules/.bin/mocha test/.setup.js test/**/*-test.jsx",
-    "lint": "./node_modules/.bin/eslint src/**/* test/**/*",
-    "build": "npm run lint && ./node_modules/.bin/babel src --out-dir dist",
+    "watch": "mocha -w --watch-extensions=jsx test/.setup.js test/**/*-test.jsx",
+    "test": "mocha test/.setup.js test/**/*-test.jsx",
+    "lint": "eslint src/**/* test/**/*",
+    "build": "npm run lint && babel src --out-dir dist",
     "prepublish": "npm run build"
   },
   "repository": {
