@@ -8,6 +8,9 @@ react-ladda
 
 A React wrapper for [Ladda buttons](https://github.com/hakimel/Ladda). [Example](https://github.com/jsdir/react-ladda/blob/master/example/README.md)
 
+## NOTE
+This is a fork of react-ladda see [here](https://github.com/jsdir/react-ladda/pull/58)
+
 ## Installation
 
 `react-ladda` can be installed directly through npm:
