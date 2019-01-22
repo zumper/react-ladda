@@ -3,12 +3,7 @@ export const S = 's'
 export const L = 'l'
 export const XL = 'xl'
 
-export const SIZES = [
-  XS,
-  S,
-  L,
-  XL,
-]
+export const SIZES = [XS, S, L, XL]
 
 export const CONTRACT = 'contract'
 export const CONTRACT_OVERLAY = 'contract-overlay'

@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { create } from 'ladda'
 
 import { SIZES, STYLES } from './constants'
 
-const isUndefined = value => typeof value === 'undefined'
+const isUndefined = (value) => typeof value === 'undefined'
 
-const OMITTED_PROPS = [
-  'loading',
-  'progress',
-]
+const OMITTED_PROPS = ['loading', 'progress']
 
 const omit = (data, keys) => {
   const result = {}
@@ -22,9 +19,7 @@ const omit = (data, keys) => {
   return result
 }
 
-export default
-class LaddaButton extends Component {
-
+export default class LaddaButton extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -33,34 +28,40 @@ class LaddaButton extends Component {
     disabled: PropTypes.bool,
 
     // Ladda props
-    // eslint-disable-next-line react/no-unused-prop-types
     'data-color': PropTypes.oneOf(['green', 'red', 'blue', 'purple', 'mint']),
-    // eslint-disable-next-line react/no-unused-prop-types
     'data-size': PropTypes.oneOf(SIZES),
-    // eslint-disable-next-line react/no-unused-prop-types
     'data-style': PropTypes.oneOf(STYLES),
-    // eslint-disable-next-line react/no-unused-prop-types
     'data-spinner-size': PropTypes.number,
-    // eslint-disable-next-line react/no-unused-prop-types
     'data-spinner-color': PropTypes.string,
-    // eslint-disable-next-line react/no-unused-prop-types
     'data-spinner-lines': PropTypes.number,
-  };
+  }
 
   componentDidMount() {
+    const { loading, progress } = this.props
     this.laddaInstance = create(this.node)
 
-    if (this.props.loading) {
+    if (loading) {
       this.laddaInstance.start()
     }
 
-    if (!isUndefined(this.props.progress)) {
-      this.laddaInstance.setProgress(this.props.progress)
+    if (!isUndefined(progress)) {
+      this.laddaInstance.setProgress(progress)
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.updateLaddaInstance(nextProps)
+  componentDidUpdate(prevProps) {
+    const { loading, progress } = this.props
+    if (prevProps.loading !== loading) {
+      if (loading) {
+        this.laddaInstance.start()
+      } else {
+        this.laddaInstance.stop()
+      }
+    }
+
+    if (prevProps.progress !== progress) {
+      this.laddaInstance.setProgress(progress)
+    }
   }
 
   componentWillUnmount() {
@@ -71,20 +72,6 @@ class LaddaButton extends Component {
     this.node = node
   }
 
-  updateLaddaInstance = (props) => {
-    if (props.loading !== this.props.loading) {
-      if (props.loading) {
-        this.laddaInstance.start()
-      } else {
-        this.laddaInstance.stop()
-      }
-    }
-
-    if (props.progress !== this.props.progress) {
-      this.laddaInstance.setProgress(props.progress)
-    }
-  }
-
   render() {
     return (
       <button
@@ -93,9 +80,7 @@ class LaddaButton extends Component {
         ref={this.setNode}
         disabled={this.props.disabled || this.props.loading}
       >
-        <span className="ladda-label">
-          {this.props.children}
-        </span>
+        <span className="ladda-label">{this.props.children}</span>
       </button>
     )
   }

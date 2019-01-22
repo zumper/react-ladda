@@ -1,32 +1,27 @@
-react-ladda
+@zumper/react-ladda
 ===========
-
-[![Build Status](https://img.shields.io/travis/jsdir/react-ladda.svg?style=flat)](https://travis-ci.org/jsdir/react-ladda)
-[![Dependency Status](https://img.shields.io/david/jsdir/react-ladda.svg?style=flat)](https://david-dm.org/jsdir/react-ladda)
-[![NPM version](https://img.shields.io/npm/v/react-ladda.svg?style=flat)](https://www.npmjs.org/package/react-ladda)
-[![Code Climate](https://img.shields.io/codeclimate/github/jsdir/react-ladda.svg?style=flat)](https://codeclimate.com/github/jsdir/react-ladda)
 
 A React wrapper for [Ladda buttons](https://github.com/hakimel/Ladda). [Example](https://github.com/jsdir/react-ladda/blob/master/example/README.md)
 
 ## NOTE
-This is a fork of react-ladda see [here](https://github.com/jsdir/react-ladda/pull/58)
+This is a fork of [react-ladda](https://www.npmjs.com/package/react-ladda); [see here](https://github.com/jsdir/react-ladda/pull/58)
 
 ## Installation
 
-`react-ladda` can be installed directly through npm:
+`@zumper/react-ladda` can be installed directly through npm:
 
 ```sh
-$ npm install --save react-ladda
+$ npm install --save @zumper/react-ladda
 ```
 
 ## Usage
 
 `LaddaButton` is a React component that renders a [Ladda button](https://github.com/hakimel/Ladda). You can change the button's loading state and progress using the `loading` and `progress` props.
 
-```jsx
+```js
 import React, { Component } from 'react';
 
-import LaddaButton, { XL, SLIDE_UP } from 'react-ladda';
+import LaddaButton, { XL, SLIDE_UP } from '@zumper/react-ladda';
 
 class App extends Component {
 
@@ -86,7 +81,7 @@ Prop                 | Type      | Description
 Ladda comes with a variety of different [sizes and styles](http://lab.hakim.se/ladda/) that you can use. Button sizes and styles can be directly imported from `react-ladda`:
 
 ```js
-import LaddaButton, { XS, EXPAND_LEFT } from 'react-ladda'
+import LaddaButton, { XS, EXPAND_LEFT } from '@zumper/react-ladda'
 ```
 
 ### Sizes
@@ -110,16 +105,3 @@ import LaddaButton, { XS, EXPAND_LEFT } from 'react-ladda'
 - `SLIDE_DOWN`
 - `ZOOM_IN`
 - `ZOOM_OUT`
-
-## Development
-
-After cloning and running `npm install`, you can use the following `npm` commands for easier development:
-
-Command         | Description
---------------- | -----------
-`npm test`      | Runs the test suite
-`npm run watch` | Runs the test suite and reruns when any source or test file changes
-`npm run lint`  | Lints both the source and test files
-`npm run build` | Compiles the source into ES5 and outputs the results into `dist`
-
-_Contributions are more than welcome!_

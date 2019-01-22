@@ -2,62 +2,133 @@
   "name": "@zumper/react-ladda",
   "version": "6.0.0-zumper.0",
   "description": "React wrapper for Ladda buttons",
-  "main": "dist/index.js",
-  "scripts": {
-    "watch": "mocha -w --watch-extensions=jsx test/.setup.js test/**/*-test.jsx",
-    "test": "mocha test/.setup.js test/**/*-test.jsx",
-    "lint": "eslint src/**/* test/**/*",
-    "build": "npm run lint && babel src --out-dir dist",
-    "prepublish": "npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zumper/react-ladda.git"
-  },
   "keywords": [
     "react",
-    "component",
-    "boilerplate"
+    "ladda",
+    "button"
   ],
-  "author": "Jason Sommer",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zumper/react-ladda/issues"
-  },
+  "author": "Jason Sommer",
   "homepage": "https://github.com/zumper/react-ladda",
-  "dependencies": {
-    "ladda": "^2.0.0",
-    "prop-types": "^15.5.8"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-eslint": "^6.1.2",
-    "babel-plugin-transform-flow-strip-types": "^6.8.0",
-    "babel-plugin-transform-regenerator": "^6.4.4",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "babel-register": "^6.4.3",
-    "chai": "^3.5.0",
-    "chai-enzyme": "^1.0.0-beta.0",
-    "cheerio": "^1.0.0-rc.2",
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^3.7.0",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.2.2",
-    "eslint-plugin-react": "^6.3.0",
-    "jsdom": "^8.0.1",
-    "mocha": "^2.4.5",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.2.0",
-    "sinon": "^1.17.5",
-    "sinon-chai": "^2.8.0"
+  "repository": "github:zumper/react-ladda",
+  "bugs": "https://github.com/zumper/react-ladda/issues",
+  "main": "lib/index.js",
+  "unpkg": "dist/react-ladda.js",
+  "module": "es/index.js",
+  "files": [
+    "dist",
+    "lib",
+    "src",
+    "es"
+  ],
+  "scripts": {
+    "build:commonjs": "cross-env MODULES_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env MODULES_ENV=esmodules babel src --out-dir es",
+    "build:umd": "cross-env NODE_ENV=development rollup -c",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c",
+    "build": "yarn build:commonjs && yarn build:es && yarn build:umd && yarn build:umd:min",
+    "clean": "rimraf lib dist es coverage",
+    "format": "prettier --write \"{src,test}/**/*.{js,ts}\" .babelrc.js rollup.config.js index.d.ts \"docs/**/*.md\"",
+    "lint": "eslint src test",
+    "prepare": "yarn clean && yarn build",
+    "pretest": "yarn lint",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "prop-types": "^15.0.0",
+    "react": "^16.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.3.0",
+    "ladda": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-destructuring": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.23",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-config-react-app": "^3.0.6",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-flowtype": "^2.50.3",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.3",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^23.6.0",
+    "jest-dom": "^3.0.0",
+    "jest-environment-enzyme": "^7.0.1",
+    "jest-environment-jsdom": "^23.4.0",
+    "jest-environment-jsdom-global": "^1.1.0",
+    "jest-enzyme": "^7.0.1",
+    "jest-pnp-resolver": "^1.0.2",
+    "jest-resolve": "^23.6.0",
+    "jsdom": "^13.1.0",
+    "prettier": "^1.16.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-app-polyfill": "^0.2.0",
+    "react-dom": "^16.7.0",
+    "react-test-renderer": "^16.7.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.1.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-terser": "^4.0.2"
+  },
+  "jest": {
+    "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
+    "coverageDirectory": "<rootDir>/coverage/",
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/dist",
+      "<rootDir>/es",
+      "<rootDir>/lib",
+      "<rootDir>/node_modules"
+    ],
+    "resolver": "jest-pnp-resolver",
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "testMatch": [
+      "<rootDir>/test/**/*.spec.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist",
+      "<rootDir>/es",
+      "<rootDir>/lib",
+      "<rootDir>/node_modules"
+    ],
+    "setupTestFrameworkScriptFile": "jest-enzyme",
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    },
+    "testURL": "https://localhost",
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\](?!(ladda|spin\\.js)[/\\\\]).+\\.(js|jsx|ts|tsx)$"
+    ]
   }
 }
