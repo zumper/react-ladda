@@ -13,7 +13,7 @@
   "repository": "github:zumper/react-ladda",
   "bugs": "https://github.com/zumper/react-ladda/issues",
   "main": "lib/index.js",
-  "unpkg": "dist/react-ladda.js",
+  "unpkg": "dist/zumper-react-ladda.js",
   "module": "es/index.js",
   "files": [
     "dist",
@@ -28,7 +28,7 @@
     "build:umd:min": "cross-env NODE_ENV=production rollup -c",
     "build": "yarn build:commonjs && yarn build:es && yarn build:umd && yarn build:umd:min",
     "clean": "rimraf lib dist es coverage",
-    "format": "prettier --write \"{src,test}/**/*.{js,ts}\" .babelrc.js rollup.config.js index.d.ts \"docs/**/*.md\"",
+    "format": "prettier --write \"{src,test}/**/*.{js,ts}\" .babelrc.js rollup.config.js .eslintrc.json \"docs/**/*.md\" && yarn lint --fix",
     "lint": "eslint src test",
     "prepare": "yarn clean && yarn build",
     "pretest": "yarn lint",
@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "prop-types": "^15.0.0",
-    "react": "^16.0.0"
+    "react": "^16.4.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.3.0",

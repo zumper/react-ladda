@@ -11,9 +11,10 @@ import LaddaButton, {
   SLIDE_UP,
   SLIDE_DOWN,
   ZOOM_IN,
-  ZOOM_OUT
-} from 'react-ladda'
+  ZOOM_OUT,
+} from '@zumper/react-ladda'
 
+import 'ladda/dist/ladda.min.css'
 import './demo.css'
 
 class App extends Component {
@@ -32,11 +33,17 @@ class App extends Component {
     expZoomOut: false,
   }
 
-  toggle(name) {
-    this.setState({
-      [name]: !this.state[name],
+  startLoading(name) {
+    this.setState((state) => ({
+      [name]: true,
       progress: 0.5,
-    })
+    }))
+    setTimeout(() => {
+      this.setState((state) => ({
+        [name]: false,
+        progress: 1,
+      }))
+    }, 1600)
   }
 
   render() {
@@ -45,17 +52,18 @@ class App extends Component {
         <div className="intro">
           <h1>Ladda</h1>
           <p>
-            A UI concept which merges loading indicators into the action that invoked them.
-            Primarily intended for use with forms where
-            it gives users immediate feedback upon submit rather than leaving them wondering
-            while the browser does its thing. For a
-            real-world example, check out any of the forms on <a href="http://slides.com">slides.com</a>.
+            A UI concept which merges loading indicators into the action that
+            invoked them. Primarily intended for use with forms where it gives
+            users immediate feedback upon submit rather than leaving them
+            wondering while the browser does its thing. For a real-world
+            example, check out any of the forms on{' '}
+            <a href="http://slides.com">slides.com</a>.
           </p>
           <section className="button-demo">
             <h3>expand-left</h3>
             <LaddaButton
               loading={this.state.expLeft}
-              onClick={() => this.toggle('expLeft')}
+              onClick={() => this.startLoading('expLeft')}
               data-color="green"
               data-style={EXPAND_LEFT}
             >
@@ -66,7 +74,7 @@ class App extends Component {
             <h3>expand-right</h3>
             <LaddaButton
               loading={this.state.expRight}
-              onClick={() => this.toggle('expRight')}
+              onClick={() => this.startLoading('expRight')}
               data-color="green"
               data-style={EXPAND_RIGHT}
             >
@@ -78,7 +86,7 @@ class App extends Component {
             <h3>expand-up</h3>
             <LaddaButton
               loading={this.state.expUp}
-              onClick={() => this.toggle('expUp')}
+              onClick={() => this.startLoading('expUp')}
               data-color="green"
               data-style={EXPAND_UP}
             >
@@ -90,7 +98,7 @@ class App extends Component {
             <h3>expand-down</h3>
             <LaddaButton
               loading={this.state.expDown}
-              onClick={() => this.toggle('expDown')}
+              onClick={() => this.startLoading('expDown')}
               data-color="green"
               data-style={EXPAND_DOWN}
             >
@@ -103,11 +111,11 @@ class App extends Component {
             <h3>contract</h3>
             <LaddaButton
               loading={this.state.expContract}
-              onClick={() => this.toggle('expContract')}
+              onClick={() => this.startLoading('expContract')}
               data-color="red"
               data-style={CONTRACT}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -115,11 +123,11 @@ class App extends Component {
             <h3>contract-overlay</h3>
             <LaddaButton
               loading={this.state.expOverlay}
-              onClick={() => this.toggle('expOverlay')}
+              onClick={() => this.startLoading('expOverlay')}
               data-color="red"
               data-style={CONTRACT_OVERLAY}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -127,11 +135,11 @@ class App extends Component {
             <h3>zoom-in</h3>
             <LaddaButton
               loading={this.state.expZoomIn}
-              onClick={() => this.toggle('expZoomIn')}
+              onClick={() => this.startLoading('expZoomIn')}
               data-color="red"
               data-style={ZOOM_IN}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -139,11 +147,11 @@ class App extends Component {
             <h3>zoom-out</h3>
             <LaddaButton
               loading={this.state.expZoomOut}
-              onClick={() => this.toggle('expZoomOut')}
+              onClick={() => this.startLoading('expZoomOut')}
               data-color="red"
               data-style={ZOOM_OUT}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -153,11 +161,11 @@ class App extends Component {
             <h3>slide-left</h3>
             <LaddaButton
               loading={this.state.expSlideLeft}
-              onClick={() => this.toggle('expSlideLeft')}
+              onClick={() => this.startLoading('expSlideLeft')}
               data-color="blue"
               data-style={SLIDE_LEFT}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -165,11 +173,11 @@ class App extends Component {
             <h3>slide-right</h3>
             <LaddaButton
               loading={this.state.expSlideRight}
-              onClick={() => this.toggle('expSlideRight')}
+              onClick={() => this.startLoading('expSlideRight')}
               data-color="blue"
               data-style={SLIDE_RIGHT}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -177,11 +185,11 @@ class App extends Component {
             <h3>slide-up</h3>
             <LaddaButton
               loading={this.state.expSlideUp}
-              onClick={() => this.toggle('expSlideUp')}
+              onClick={() => this.startLoading('expSlideUp')}
               data-color="blue"
               data-style={SLIDE_UP}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
 
@@ -189,11 +197,11 @@ class App extends Component {
             <h3>slide-down</h3>
             <LaddaButton
               loading={this.state.expSlideDown}
-              onClick={() => this.toggle('expSlideDown')}
+              onClick={() => this.startLoading('expSlideDown')}
               data-color="blue"
               data-style={SLIDE_DOWN}
             >
-            Submit!
+              Submit!
             </LaddaButton>
           </section>
         </div>

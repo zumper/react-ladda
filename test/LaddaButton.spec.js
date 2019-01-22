@@ -2,8 +2,8 @@ import React from 'react'
 import { findDOMNode } from 'react-dom'
 import * as Ladda from 'ladda'
 
-import LaddaButton from '../es/LaddaButton'
-import { XL, SLIDE_UP } from '../es/constants'
+import LaddaButton from '../src/LaddaButton'
+import { XL, SLIDE_UP } from '../src/constants'
 
 describe('LaddaButton', () => {
   it('should render the elements correctly', () => {

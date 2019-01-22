@@ -40,7 +40,9 @@ export default [
     },
     external,
     plugins: [
-      nodeResolve(),
+      nodeResolve({
+        extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
+      }),
       babel(),
       commonjs(),
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
@@ -60,7 +62,9 @@ export default [
     },
     external,
     plugins: [
-      nodeResolve(),
+      nodeResolve({
+        extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
+      }),
       babel(),
       commonjs(),
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),

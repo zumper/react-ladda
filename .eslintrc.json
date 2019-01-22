@@ -9,11 +9,13 @@
     "prettier/react",
     "prettier/standard"
   ],
-  "plugins": [
-    "jest",
-    "prettier"
-  ],
+  "plugins": ["jest", "prettier"],
   "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    },
     "react": {
       "version": "detect"
     }
@@ -23,9 +25,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "test/**/*.spec.js"
-      ],
+      "files": ["test/**/*.spec.js"],
       "env": {
         "jest": true,
         "jest/globals": true

@@ -93,7 +93,7 @@ module.exports = {
     // Adds syntax support for import()
     '@babel/plugin-syntax-dynamic-import',
     // Transform dynamic import to require
-    isEnvTest && 'babel-plugin-dynamic-import-node',
+    useCommonJS && 'babel-plugin-dynamic-import-node',
     useCommonJS && [
       '@babel/plugin-transform-modules-commonjs',
       { loose: true },
