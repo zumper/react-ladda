@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [7.0.0] - 2019-01-22
+### Changed
+- Upgrade to ladda 2.0.1
+- Upgrade to babel 7
+- Change build system to create `es`, `lib` and `dist`
+- Change to jest for testing
+- Update example to the latest create-react-app
+
 ## [6.0.0] - 2018-02-10
 ### Changed
 - Support `react@16.x.x`

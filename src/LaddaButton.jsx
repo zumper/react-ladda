@@ -2,17 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { create } from 'ladda'
 
-import { SIZES, STYLES } from './constants'
+import { COLORS, SIZES, STYLES } from './constants'
 
 const isUndefined = (value) => typeof value === 'undefined'
 
 const OMITTED_PROPS = ['loading', 'progress']
+const MAPPED_PROPS = {
+  color: 'data-color',
+  size: 'data-size',
+  style: 'data-style',
+  spinnerSize: 'data-spinner-size',
+  spinnerColor: 'data-spinner-color',
+  spinnerLines: 'data-spinner-lines',
+}
 
 const omit = (data, keys) => {
   const result = {}
   Object.keys(data).forEach((key) => {
     if (keys.indexOf(key) === -1) {
-      result[key] = data[key]
+      const finalKey = MAPPED_PROPS[key] || key
+      result[finalKey] = data[key]
     }
   })
 
@@ -27,8 +36,16 @@ export default class LaddaButton extends React.Component {
     loading: PropTypes.bool,
     disabled: PropTypes.bool,
 
-    // Ladda props
-    'data-color': PropTypes.oneOf(['green', 'red', 'blue', 'purple', 'mint']),
+    // props
+    color: PropTypes.oneOf(COLORS),
+    size: PropTypes.oneOf(SIZES),
+    style: PropTypes.oneOf(STYLES),
+    spinnerSize: PropTypes.number,
+    spinnerColor: PropTypes.string,
+    spinnerLines: PropTypes.number,
+
+    // legacy props
+    'data-color': PropTypes.oneOf(COLORS),
     'data-size': PropTypes.oneOf(SIZES),
     'data-style': PropTypes.oneOf(STYLES),
     'data-spinner-size': PropTypes.number,

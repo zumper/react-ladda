@@ -1,7 +1,7 @@
-React Ladda Button Example
+Zumper React Ladda Button Example
 ==============================
 
-This is a runnable demo showing how to use `react-ladda`
+This is a runnable demo showing how to use `@zumper/react-ladda`
 
 ## Running Example
 

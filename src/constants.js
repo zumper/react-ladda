@@ -1,3 +1,10 @@
+export const GREEN = 'green'
+export const RED = 'red'
+export const BLUE = 'blue'
+export const PURPLE = 'purple'
+export const MINT = 'mint'
+export const COLORS = [GREEN, RED, BLUE, PURPLE, MINT]
+
 export const XS = 'xs'
 export const S = 's'
 export const L = 'l'
