@@ -8,3 +8,5 @@ lib
 coverage
 es
 lcov.info
+src/ladda.js
+src/spin.js

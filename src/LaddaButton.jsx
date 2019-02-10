@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { create } from 'ladda'
 
+import { create } from './ladda'
 import { COLORS, SIZES, STYLES } from './constants'
 
 const isUndefined = (value) => typeof value === 'undefined'
 
-const OMITTED_PROPS = ['loading', 'progress']
 const MAPPED_PROPS = {
   color: 'data-color',
   size: 'data-size',
@@ -16,17 +15,12 @@ const MAPPED_PROPS = {
   spinnerLines: 'data-spinner-lines',
 }
 
-const omit = (data, keys) => {
-  const result = {}
-  Object.keys(data).forEach((key) => {
-    if (keys.indexOf(key) === -1) {
-      const finalKey = MAPPED_PROPS[key] || key
-      result[finalKey] = data[key]
-    }
-  })
-
-  return result
-}
+const mapLegacyProps = (props) =>
+  Object.keys(props).reduce((mappedProps, key) => {
+    const finalKey = MAPPED_PROPS[key] || key
+    mappedProps[finalKey] = props[key]
+    return mappedProps
+  }, {})
 
 export default class LaddaButton extends React.Component {
   static propTypes = {
@@ -36,7 +30,7 @@ export default class LaddaButton extends React.Component {
     loading: PropTypes.bool,
     disabled: PropTypes.bool,
 
-    // props
+    // ladda props
     color: PropTypes.oneOf(COLORS),
     size: PropTypes.oneOf(SIZES),
     style: PropTypes.oneOf(STYLES),
@@ -44,7 +38,7 @@ export default class LaddaButton extends React.Component {
     spinnerColor: PropTypes.string,
     spinnerLines: PropTypes.number,
 
-    // legacy props
+    // legacy ladda props
     'data-color': PropTypes.oneOf(COLORS),
     'data-size': PropTypes.oneOf(SIZES),
     'data-style': PropTypes.oneOf(STYLES),
@@ -53,9 +47,14 @@ export default class LaddaButton extends React.Component {
     'data-spinner-lines': PropTypes.number,
   }
 
+  constructor() {
+    super()
+    this.buttonRef = React.createRef()
+  }
+
   componentDidMount() {
     const { loading, progress } = this.props
-    this.laddaInstance = create(this.node)
+    this.laddaInstance = create(this.buttonRef.current)
 
     if (loading) {
       this.laddaInstance.start()
@@ -85,19 +84,23 @@ export default class LaddaButton extends React.Component {
     this.laddaInstance.remove()
   }
 
-  setNode = (node) => {
-    this.node = node
-  }
-
   render() {
+    const {
+      className,
+      children,
+      disabled,
+      loading,
+      progress,
+      ...otherProps
+    } = this.props
     return (
       <button
-        {...omit(this.props, OMITTED_PROPS)}
-        className={`ladda-button ${this.props.className || ''}`}
-        ref={this.setNode}
-        disabled={this.props.disabled || this.props.loading}
+        {...mapLegacyProps(otherProps)}
+        className={`ladda-button ${className || ''}`}
+        ref={this.buttonRef}
+        disabled={disabled || loading}
       >
-        <span className="ladda-label">{this.props.children}</span>
+        <span className="ladda-label">{children}</span>
       </button>
     )
   }

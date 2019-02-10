@@ -1,7 +1,7 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
-import * as Ladda from 'ladda'
 
+import * as Ladda from '../src/ladda'
 import LaddaButton from '../src/LaddaButton'
 import { XL, SLIDE_UP } from '../src/constants'
 

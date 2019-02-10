@@ -12,7 +12,7 @@ const areHelpersEnabled = false
 
 let targets
 if (useCommonJS) {
-  targets = { node: isEnvTest ? 'current' : 4 }
+  targets = { node: isEnvTest ? 'current' : 6 }
 } else if (useESModules) {
   targets = { esmodules: true }
 } else {

@@ -7,6 +7,7 @@ A React wrapper for [Ladda buttons](https://github.com/hakimel/Ladda). [Example]
 This project started as a fork of [react-ladda](https://www.npmjs.com/package/react-ladda).
 
 Differences:
+
 - props without the cumbersome `data-` prefix are allowed
 - upgraded to ladda 2 [see here](https://github.com/jsdir/react-ladda/pull/58)
 - modern build system with `es`, `cjs` and `umd` builds
@@ -97,15 +98,15 @@ If you are using scss (or [create-react-app](https://facebook.github.io/create-r
 
 All of the native [Ladda button options](https://github.com/hakimel/Ladda#html) are supported through props:
 
-| Prop                                    | Type      | Description                                           |
-| --------------------------------------- | --------- | ----------------------------------------------------- |
-| `loading`                               | `boolean` | Displays the button's loading indicator               |
-| `progress`                              | `number`  | Number from 0.0 to 1.0                                |
-| `color` or `data-color`                 | `string`  | Color applied to the button (A [color](#colors))      |
-| `size` or `data-size`                   | `string`  | A [button size](#sizes)                               |
-| `style` or `data-style`                 | `string`  | A [button style](#styles)                             |
-| `spinnerSize` or `data-spinner-size`    | `number`  | Number representing the size of the spinner in pixels |
-| `spinnerColor` or `data-spinner-color`  | `string`  | Color applied to the spinner (eg. `#eee`)             |
+| Prop                                   | Type      | Description                                           |
+| -------------------------------------- | --------- | ----------------------------------------------------- |
+| `loading`                              | `boolean` | Displays the button's loading indicator               |
+| `progress`                             | `number`  | Number from 0.0 to 1.0                                |
+| `color` or `data-color`                | `string`  | Color applied to the button (A [color](#colors))      |
+| `size` or `data-size`                  | `string`  | A [button size](#sizes)                               |
+| `style` or `data-style`                | `string`  | A [button style](#styles)                             |
+| `spinnerSize` or `data-spinner-size`   | `number`  | Number representing the size of the spinner in pixels |
+| `spinnerColor` or `data-spinner-color` | `string`  | Color applied to the spinner (eg. `#eee`)             |
 | `spinnerLines` or `data-spinner-lines` | `number`  | Number of spokes in the spinner                       |
 
 ## Colors, Sizes and Styles

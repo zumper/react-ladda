@@ -23,7 +23,6 @@ const external = [
 const globals = {
   react: 'React',
   'prop-types': 'PropTypes',
-  ladda: 'Ladda',
 }
 
 export default [
