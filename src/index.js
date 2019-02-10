@@ -1,6 +1,7 @@
 import LaddaButton from './LaddaButton'
+import * as Ladda from './ladda'
+import { Spinner } from './spin'
 
-export default LaddaButton
+export { Ladda, Spinner }
 export * from './constants'
-export * from './ladda'
-export * from './spin'
+export default LaddaButton
