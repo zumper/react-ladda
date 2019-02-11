@@ -821,6 +821,13 @@
     babel-plugin-macros "2.5.0"
     babel-plugin-transform-react-remove-prop-types "0.4.24"
 
+"@zumper/react-ladda@../zumper-react-ladda-7.1.1.tgz":
+  version "7.1.1"
+  resolved "../zumper-react-ladda-7.1.1.tgz#e2a3a04d0cf17a278bdb1904dbd3a0fdaeed542c"
+  dependencies:
+    "@babel/runtime" "^7.3.0"
+    ladda "^2.0.1"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
