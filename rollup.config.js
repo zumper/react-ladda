@@ -10,10 +10,6 @@ const input = 'src/index.js'
 const globalName = 'ZumperReactLadda'
 const fileName = 'zumper-react-ladda'
 
-const { NODE_ENV } = process.env
-const isEnvDevelopment = NODE_ENV === 'development'
-const isEnvProduction = NODE_ENV === 'production'
-
 const external = [
   ...Object.keys(pkg.dependencies || {}).filter(
     (key) => key !== '@babel/runtime'
@@ -27,7 +23,7 @@ const globals = {
 
 export default [
   // UMD Development
-  isEnvDevelopment && {
+  {
     input,
     output: {
       file: `dist/${fileName}.js`,
@@ -49,7 +45,7 @@ export default [
   },
 
   // UMD Production
-  isEnvProduction && {
+  {
     input,
     output: {
       file: `dist/${fileName}.min.js`,
@@ -77,4 +73,4 @@ export default [
       }),
     ],
   },
-].filter(Boolean)
+]
