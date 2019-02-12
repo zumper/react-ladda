@@ -30,8 +30,9 @@
     "clean": "rimraf lib dist es coverage",
     "format": "prettier --write \"{example,src,test}/**/*.{js,jsx,ts,tsx}\" .babelrc.js rollup.config.js .eslintrc.json README.md \"docs/**/*.md\" && yarn lint --fix || true",
     "lint": "eslint src test",
-    "prepare": "yarn clean && yarn format && yarn build",
+    "prepare": "yarn clean && yarn build",
     "pretest": "yarn lint",
+    "preversion": "yarn format",
     "postversion": "git push && git push --tags",
     "test": "yarn copy:ladda && jest",
     "coverage": "jest --coverage"

@@ -14,7 +14,7 @@
     "react-scripts": "^2.1.5"
   },
   "scripts": {
-    "add:ladda": "cd ../ && npm pack && cd example && yarn add @zumper/react-ladda@$(ls -t ../zumper-react-ladda-*.tgz | head -1)",
+    "add:ladda": "yarn remove @zumper/react-ladda && cd ../ && npm pack && cd example && yarn add @zumper/react-ladda@$(ls -t ../zumper-react-ladda-*.tgz | head -1)",
     "start": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "build": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts build"
   },
