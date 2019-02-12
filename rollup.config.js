@@ -4,11 +4,15 @@ import commonjs from 'rollup-plugin-commonjs'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 
+import camelCase from 'lodash.camelcase'
+import kebabCase from 'lodash.kebabcase'
+import upperFirst from 'lodash.upperfirst'
+
 import pkg from './package.json'
 
 const input = 'src/index.js'
-const globalName = 'ZumperReactLadda'
-const fileName = 'zumper-react-ladda'
+const globalName = upperFirst(camelCase(pkg.name))
+const fileName = kebabCase(pkg.name)
 
 const external = [
   ...Object.keys(pkg.dependencies || {}).filter(
