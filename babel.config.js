@@ -1,6 +1,10 @@
 const { NODE_ENV, MODULES_ENV } = process.env
 
 const isEnvTest = NODE_ENV === 'test'
+if (!isEnvTest) {
+  // force production mode for package builds
+  process.env.NODE_ENV = 'production'
+}
 
 const useCommonJS = isEnvTest || MODULES_ENV === 'commonjs'
 const useESModules = MODULES_ENV === 'esmodules'

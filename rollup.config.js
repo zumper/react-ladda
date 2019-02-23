@@ -14,67 +14,55 @@ const input = 'src/index.js'
 const globalName = upperFirst(camelCase(pkg.name))
 const fileName = kebabCase(pkg.name)
 
-const external = [
+const deps = [
   ...Object.keys(pkg.dependencies || {}).filter(
     (key) => key !== '@babel/runtime'
   ),
   ...Object.keys(pkg.peerDependencies || {}),
 ]
+const external = (name) => deps.some((dep) => name.startsWith(dep))
 const globals = {
   react: 'React',
   'prop-types': 'PropTypes',
+  // ... add other external UMD package names here
+}
+
+const createConfig = (env) => {
+  const isEnvProduction = env === 'production'
+  return {
+    input,
+    output: {
+      file: `dist/${fileName}${isEnvProduction ? '.min' : ''}.js`,
+      format: 'umd',
+      name: globalName,
+      indent: false,
+      exports: 'named',
+      globals,
+    },
+    external,
+    plugins: [
+      nodeResolve({
+        extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
+      }),
+      babel(),
+      commonjs(),
+      replace({ 'process.env.NODE_ENV': JSON.stringify(env) }),
+      isEnvProduction &&
+        terser({
+          compress: {
+            pure_getters: true,
+            unsafe: true,
+            unsafe_comps: true,
+            warnings: false,
+          },
+        }),
+    ].filter(Boolean),
+  }
 }
 
 export default [
   // UMD Development
-  {
-    input,
-    output: {
-      file: `dist/${fileName}.js`,
-      format: 'umd',
-      name: globalName,
-      indent: false,
-      exports: 'named',
-      globals,
-    },
-    external,
-    plugins: [
-      nodeResolve({
-        extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
-      }),
-      babel(),
-      commonjs(),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
-    ],
-  },
-
+  createConfig('development'),
   // UMD Production
-  {
-    input,
-    output: {
-      file: `dist/${fileName}.min.js`,
-      format: 'umd',
-      name: globalName,
-      indent: false,
-      exports: 'named',
-      globals,
-    },
-    external,
-    plugins: [
-      nodeResolve({
-        extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
-      }),
-      babel(),
-      commonjs(),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      terser({
-        compress: {
-          pure_getters: true,
-          unsafe: true,
-          unsafe_comps: true,
-          warnings: false,
-        },
-      }),
-    ],
-  },
+  createConfig('production'),
 ]
