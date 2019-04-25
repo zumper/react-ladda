@@ -6,26 +6,30 @@ if (!isEnvTest) {
   process.env.NODE_ENV = 'production'
 }
 
-const useCommonJS = isEnvTest || MODULES_ENV === 'commonjs'
-const useESModules = MODULES_ENV === 'esmodules'
+const targetJest = isEnvTest
+const targetCommonJS = MODULES_ENV === 'commonjs' && !targetJest
+const targetESModules = MODULES_ENV === 'esmodules' && !targetJest
+const targetWeb = !targetCommonJS && !targetESModules && !targetJest
 
 module.exports = {
   presets: [
     // for testing with jest/jsdom
-    useCommonJS && isEnvTest && '@zumper/babel-preset-react-app/test',
+    targetJest && '@zumper/babel-preset-react-app/test',
     // building for lib folder
-    useCommonJS &&
+    targetCommonJS &&
       !isEnvTest && [
         '@zumper/babel-preset-react-app/commonjs',
-        { helpers: true, absoluteRuntime: false },
+        { helpers: true, moduleTransform: false, absoluteRuntime: false },
       ],
     // building for es folder
-    useESModules && [
+    targetESModules && [
       '@zumper/babel-preset-react-app/esmodules',
       { helpers: true, absoluteRuntime: false },
     ],
     // building for dist folder
-    !useCommonJS &&
-      !useESModules && ['@zumper/babel-preset-react-app', { helpers: false }],
+    targetWeb && [
+      '@zumper/babel-preset-react-app',
+      { helpers: false, absoluteRuntime: false },
+    ],
   ].filter(Boolean),
 }
