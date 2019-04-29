@@ -19,7 +19,7 @@ module.exports = {
     targetCommonJS &&
       !isEnvTest && [
         '@zumper/babel-preset-react-app/commonjs',
-        { helpers: true, moduleTransform: false, absoluteRuntime: false },
+        { helpers: true, moduleTransform: true, absoluteRuntime: false },
       ],
     // building for es folder
     targetESModules && [
