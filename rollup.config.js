@@ -4,9 +4,9 @@ import commonjs from 'rollup-plugin-commonjs'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 
-import camelCase from 'lodash/camelcase'
-import kebabCase from 'lodash/kebabcase'
-import upperFirst from 'lodash/upperfirst'
+import camelCase from 'lodash/camelCase'
+import kebabCase from 'lodash/kebabCase'
+import upperFirst from 'lodash/upperFirst'
 
 import pkg from './package.json'
 
